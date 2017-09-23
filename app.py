@@ -54,18 +54,20 @@ def processRequest(req):
         return {}
     baseurl = "https://query.yahooapis.com/v1/public/yql?"
     yql_query = makeYqlQuery(req)
+	 yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
+    result = urlopen(yql_url).read()
+    data = json.loads(result)
+    res = makeWebhookResult(data)
+    return res
 	elif req.get("result").get("action")=="getjoke":
         baseurl = "http://api.icndb.com/jokes/random"
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForGetJoke(data)
+		return res
     if yql_query is None:
         return {}
-    yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
-    result = urlopen(yql_url).read()
-    data = json.loads(result)
-    res = makeWebhookResult(data)
-    return res
+   
 
 def makeWebhookResultForGetJoke(data):
     valueString = data.get('value')
