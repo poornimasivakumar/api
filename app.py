@@ -50,16 +50,7 @@ def webhook():
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "yahooWeatherForecast":
-        return {}
-    baseurl = "https://query.yahooapis.com/v1/public/yql?"
-    yql_query = makeYqlQuery(req)
-	 yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
-    result = urlopen(yql_url).read()
-    data = json.loads(result)
-    res = makeWebhookResult(data)
-    return res
-if req.get("result").get("action")=="getjoke":
+  if req.get("result").get("action")=="getjoke":
         baseurl = "http://api.icndb.com/jokes/random"
         result = urlopen(baseurl).read()
         data = json.loads(result)
@@ -79,16 +70,6 @@ def makeWebhookResultForGetJoke(data):
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
-
-def makeYqlQuery(req):
-    result = req.get("result")
-    parameters = result.get("parameters")
-    city = parameters.get("geo-city")
-    if city is None:
-        return None
-
-    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
-
 
 def makeWebhookResult(data):
     query = data.get('query')
