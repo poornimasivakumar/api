@@ -77,7 +77,7 @@ def processRequest(req):
 
 def makeWebhookResultForGetJoke(data):
     valueString = data.get('value')
-    joke = valueString.get('joke')
+    joke = valueString.get('categories')
     speechText = joke
     displayText = joke
     return {
