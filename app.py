@@ -89,9 +89,8 @@ def makeWebhookResultForGetJoke(data):
     }
 	
 def getdatafrombackend(data):
-    valueString = data.get('data')
+    valueString = data.get('result')
     order_no = valueString.get('order_no')
-	#token="87a58460e0e23d55ddf77f31eee12974
     speechText = order_no
     displayText = order_no
     return {
@@ -99,7 +98,7 @@ def getdatafrombackend(data):
         "displayText": displayText,
         # "data": data,
         # "contextOut": [],
-        #"source": "apiai-weather-webhook-sample"
+        "source": "apiai-weather-webhook-sample"
     }
 def makeYqlQuery(req):
     result = req.get("result")
