@@ -97,7 +97,7 @@ def getdatafrombackend(data):
         "speech": speechText,
         "displayText": displayText,
         "data": [],
-        # "contextOut": [],
+        "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
 def makeYqlQuery(req):
