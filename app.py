@@ -93,7 +93,7 @@ def getdatafrombackend(data):
     order_no = valueString.get('id')
     speechText = order_no
     displayText = order_no
-    #print order_no
+    print "lalla"
     return {
         "speech": speechText,
         "displayText": displayText,
