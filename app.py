@@ -66,7 +66,7 @@ def processRequest(req):
         data = json.loads(result)
         res = makeWebhookResultForGetJoke(data)
     elif req.get("result").get("action")=="aryaone":
-        baseurl = "http://ec2-35-154-174-144.ap-south-1.compute.amazonaws.com/api/v1/index.php/driver_app/orders?driver_token=bef1032495ef4b2c891795fce1fa16c2"
+        baseurl = " http://ec2-35-154-174-144.ap-south-1.compute.amazonaws.com/api/v1/index.php/driver_app/orders?driver_token=bef1032495ef4b2c891795fce1fa16c2"
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = getdatafrombackend(data)
@@ -90,7 +90,7 @@ def makeWebhookResultForGetJoke(data):
 	
 def getdatafrombackend(data):
     valueString = data.get('result')
-    order_no = "order number:"+valueString.get('order_no')
+    order_no = "order number:"+valueString.get('order_no')+valueString.get('payment_status')
     speechText = order_no
     displayText = order_no
     return {
