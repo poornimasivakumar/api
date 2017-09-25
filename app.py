@@ -93,12 +93,12 @@ def getdatafrombackend(data):
     order_no = valueString.get('order_no')
     speechText = order_no
     displayText = order_no
-	print order_no
+    print order_no
     return {
         "speech": speechText,
         "displayText": displayText,
          #data": data,
-        # "contextOut": [],
+         #"contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
 def makeYqlQuery(req):
