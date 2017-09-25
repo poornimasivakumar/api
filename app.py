@@ -90,7 +90,7 @@ def makeWebhookResultForGetJoke(data):
 	
 def getdatafrombackend(data):
     valueString = data.get('result')
-    order_no = valueString.get('order_no')
+    order_no = "order number:"+valueString.get('order_no')
     speechText = order_no
     displayText = order_no
     return {
