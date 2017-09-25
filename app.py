@@ -1,3 +1,4 @@
+
 # -*- coding:utf8 -*-
 # !/usr/bin/env python
 # Copyright 2017 Google Inc. All Rights Reserved.
@@ -65,7 +66,7 @@ def processRequest(req):
         data = json.loads(result)
         res = makeWebhookResultForGetJoke(data)
 	elif req.get("result").get("action")=="aryaone":
-        baseurl = "http://oodi.co.in/projects/viv/api/v1/app/chat_users"
+        baseurl = " http://ec2-35-154-174-144.ap-south-1.compute.amazonaws.com/api/v1/index.php/driver_app/orders?driver_token=bef1032495ef4b2c891795fce1fa16c2"
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = getdatafrombackend(data)
@@ -89,8 +90,8 @@ def makeWebhookResultForGetJoke(data):
 	
 def getdatafrombackend(data):
     valueString = data.get('value')
-    joke1 = valueString.get('joke1')
-	token="87a58460e0e23d55ddf77f31eee12974"
+    joke1 = valueString.get('order_no')
+	#token="87a58460e0e23d55ddf77f31eee12974
     speechText = joke1
     displayText = joke1
     return {
