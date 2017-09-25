@@ -89,7 +89,7 @@ def makeWebhookResultForGetJoke(data):
     }
 	
 def getdatafrombackend(data):
-    valueString = data.get('value')
+    valueString = data.get('data')
     joke1 = valueString.get('order_no')
 	#token="87a58460e0e23d55ddf77f31eee12974
     speechText = joke1
