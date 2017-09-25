@@ -1,4 +1,4 @@
-# Api.ai - sample webhook implementation in Python
+# Api.ai - sample webhook implementation
 
 
 # Deploy to:
