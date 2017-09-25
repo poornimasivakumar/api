@@ -1,3 +1,22 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+ @poornimasivakumar
+ Sign out
+ Watch 0
+  Star 0
+  Fork 0 poornimasivakumar/api
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Settings Insights 
+Branch: master Find file Copy pathapi/app.py
+94f3cd6  4 minutes ago
+@poornimasivakumar poornimasivakumar Update app.py
+1 contributor
+RawBlameHistory     
+140 lines (110 sloc)  3.77 KB
 # -*- coding:utf8 -*-
 # !/usr/bin/env python
 # Copyright 2017 Google Inc. All Rights Reserved.
@@ -64,6 +83,11 @@ def processRequest(req):
         result = urlopen(baseurl).read()
         data = json.loads(result)
         res = makeWebhookResultForGetJoke(data)
+	elif req.get("result").get("action")=="aryaone":
+        baseurl = "http://oodi.co.in/projects/viv/api/v1/app/chat_users"
+        result = urlopen(baseurl).read()
+        data = json.loads(result)
+        res = getdatafrombackend(data)
     else:
         return {}
 
@@ -74,6 +98,20 @@ def makeWebhookResultForGetJoke(data):
     joke = valueString.get('joke')
     speechText = joke
     displayText = joke
+    return {
+        "speech": speechText,
+        "displayText": displayText,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
+	
+def getdatafrombackend(data):
+    valueString = data.get('value')
+    joke1 = valueString.get('joke1')
+	token="87a58460e0e23d55ddf77f31eee12974"
+    speechText = joke1
+    displayText = joke1
     return {
         "speech": speechText,
         "displayText": displayText,
