@@ -50,26 +50,33 @@ def webhook():
 
 
 def processRequest(req):
-  if req.get("result").get("action")=="getjoke":
-        baseurl = "http://api.icndb.com/jokes/random"
-        result = urlopen(baseurl).read()
-        data = json.loads(result)
-        res = makeWebhookResultForGetJoke(data)
-		return res
-   
+    if req.get("result").get("action") != "getjoke":
+        return {}
+    baseurl = "http://api.icndb.com/jokes/random"
+    yql_query = makeYqlQuery(req)
+    if yql_query is None:
+        return {}
+    yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
+    result = urlopen(yql_url).read()
+    data = json.loads(result)
+    res = makeWebhookResult(data)
+    return res
 
-def makeWebhookResultForGetJoke(data):
-    valueString = data.get('value')
-    joke = valueString.get('joke')
-    speechText = joke
+
+def makeYqlQuery(req):
+    result = req.get("result")
+    joke = result.get("joke")
+	speechText = joke
     displayText = joke
+
     return {
-        "speech": speechText,
+		"speech": speechText,
         "displayText": displayText,
         # "data": data,
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
-    }
+	} 
+
 
 def makeWebhookResult(data):
     query = data.get('query')
