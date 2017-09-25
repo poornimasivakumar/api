@@ -96,7 +96,7 @@ def getdatafrombackend(data):
     return {
         "speech": speechText,
         "displayText": displayText,
-        # "data": data,
+        "data": [],
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
